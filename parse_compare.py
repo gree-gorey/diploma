@@ -3,6 +3,10 @@ from lxml import etree
 from get_id import get_raw_and_standard_ids
 
 
+FOLDER = '0_gold'
+# FOLDER = '0_Ilya'
+
+
 def get_tree(path):
     for root, dirs, files in os.walk(path):
         for filename in files:
@@ -11,7 +15,7 @@ def get_tree(path):
             yield tree
 
 
-for tree in get_tree('./todo/'):
+for tree in get_tree('./{}/'.format(FOLDER)):
     raw_ids, standard_ids = get_raw_and_standard_ids(tree)
 
     time_slots = tree.xpath('//TIME_ORDER')[0]
@@ -52,21 +56,22 @@ for tree in get_tree('./todo/'):
     for explicit_time in time_hash:
         for time_id in time_hash[explicit_time]:
             if time_id in hash_begin_raw:
-                if explicit_time not in aligned:
-                    aligned[explicit_time] = {'raw': hash_begin_raw[time_id]}
+                if int(explicit_time) not in aligned:
+                    aligned[int(explicit_time)] = {'raw': hash_begin_raw[time_id]}
                 else:
-                    aligned[explicit_time]['raw'] = hash_begin_raw[time_id]
+                    aligned[int(explicit_time)]['raw'] = hash_begin_raw[time_id]
 
             if time_id in hash_begin_norm:
-                if explicit_time not in aligned:
-                    aligned[explicit_time] = {'norm': hash_begin_norm[time_id]}
+                if int(explicit_time) not in aligned:
+                    aligned[int(explicit_time)] = {'norm': hash_begin_norm[time_id]}
                 else:
-                    aligned[explicit_time]['norm'] = hash_begin_norm[time_id]
+                    aligned[int(explicit_time)]['norm'] = hash_begin_norm[time_id]
 
-    raw_file = open('raw_one.txt', 'a', encoding='utf-8')
-    norm_file = open('norm_one.txt', 'a', encoding='utf-8')
+    raw_file = open('./0_results/{}_raw.txt'.format(FOLDER), 'a', encoding='utf-8')
+    norm_file = open('./0_results/{}_norm.txt'.format(FOLDER), 'a', encoding='utf-8')
 
-    for pair in aligned.values():
+    for time_stamp in sorted(aligned):
+        pair = aligned[time_stamp]
         if len(pair) > 1:
             norm = pair['norm'].replace('\r\n', '').replace('\n', '')
             norm = ' '.join([x.split(':')[1] for x in norm.split('|')])
