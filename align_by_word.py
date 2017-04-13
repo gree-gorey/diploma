@@ -4,7 +4,7 @@ from pyaspeller import Word
 with open('./0_results/gold', 'r') as f:
     gold_norm = [line.rstrip() for line in f.readlines()]
 
-with open('./0_results/2500', 'r') as f:
+with open('./0_results/3000', 'r') as f:
     csmt_norm = [line.rstrip() for line in f.readlines()]
 
 w = open('./0_results/aligned.tsv', 'w')
