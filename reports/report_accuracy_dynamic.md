@@ -15,7 +15,8 @@ LM *type* is fixed: both spoken + written language corpora.
 | 25           | 81         | 00:00:15   | 58.9         | 68.1           | 74.6         | 
 | 30           | 102        | 00:00:16   | 64.1         | 71.5           | 77.2         | 
 | 50           | 163        | 00:00:18   | 66.4         | 72.3           | 77.3         | 
-| 100          | 299        | 00:00:19   | 70           | 75.5           | 80.7         | 
+| 100          | 299        | 00:00:19   | 70           | 75.5           | 80.7         |
+| 300          | 1004       | 00:00:40   | 78.4         | 80.5           | 84.4         | 
 | 500          | 1641       | 00:00:45   | 77.9         | 80.9           | 85.8         | 
 | 1000         | 3330       | 00:05:37   | 82           | 83.2           | 87.2         | 
 | 1500         | 4836       | 00:03:11   | 80.5         | 83.1           | 85.8         | 
@@ -25,8 +26,11 @@ LM *type* is fixed: both spoken + written language corpora.
 | 3500         | 11919      | 00:10:27   | 82.1         | 83.1           | 86.9         | 
 | 4035         | 13767      | 00:11:15   | 82.5 **(84.8&ast;)** | 83.3 **(85.8&ast;)**   | 86.9 **(89.6&ast;)** | 
 
+**&ast;** after manual alignment.
 
 ### Figure 1. Accuracy ~ size of gold standard input
+
+![acc_dynamics](https://raw.githubusercontent.com/gree-gorey/diploma/master/static/img/acc_dynamics.png "acc_dynamics")
 
 ### Quality error ...
 

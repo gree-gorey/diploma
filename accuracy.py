@@ -1,7 +1,7 @@
 from Levenshtein import distance
 from pymystem3 import Mystem
 
-run = '3500'
+run = '300'
 
 m = Mystem()
 
