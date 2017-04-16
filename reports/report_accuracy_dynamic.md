@@ -26,11 +26,11 @@ LM *type* is fixed: both spoken + written language corpora.
 | 3500         | 11919      | 00:10:27   | 82.1         | 83.1           | 86.9         | 
 | 4035         | 13767      | 00:11:15   | 82.5 **(84.8&ast;)** | 83.3 **(85.8&ast;)**   | 86.9 **(89.6&ast;)** | 
 
-**&ast;** after manual alignment.
+**&ast; after manual alignment.**
 
 ### Figure 1. Accuracy ~ size of gold standard input
 
-![acc_dynamics](https://raw.githubusercontent.com/gree-gorey/diploma/master/static/img/acc_dynamics.png "acc_dynamics")
+![acc_dynamics](https://raw.githubusercontent.com/gree-gorey/diploma/master/static/acc_dynamics.png "acc_dynamics")
 
 ### Quality error ...
 
