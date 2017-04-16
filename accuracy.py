@@ -14,6 +14,9 @@ lev_csmt_spell = {}
 
 right_lemma = 0
 
+w_wrong = open('errors.tsv', 'w')
+w_wrong.write('original\tgold\tcsmt\tspellcheck\n')
+
 w = open('accuracy.tsv', 'w')
 w.write('tool\tdist\n')
 
@@ -25,12 +28,12 @@ wrong = 0
 total = 0
 
 for line in lines:
-    gold, csmt, csmt_spell = line.split('\t')
+    raw, gold, csmt, csmt_spell = line.split('\t')
     gold = gold.replace('ё', 'е')
     csmt = csmt.replace('none', '').replace('ё', 'е')
     csmt_spell = csmt_spell.replace('none', '').replace('ё', 'е')
     if gold != '***':
-        if gold != 'none':
+        # if gold != 'none':
             total += 1
             dist = distance(gold, csmt)
             w.write('{}\t{}\n'.format("CSMT", dist))
@@ -41,6 +44,7 @@ for line in lines:
 
             dist = distance(gold, csmt_spell)
             if dist:
+                w_wrong.write('{}\t{}\t{}\t{}\n'.format(raw, gold, csmt, csmt_spell))
                 wrong += 1
                 # print(gold, csmt_spell)
             w_spell.write('{}\t{}\n'.format("CSMT", dist))
@@ -77,3 +81,4 @@ print('{}\t{}'.format(right, wrong))
 
 w.close()
 w_spell.close()
+w_wrong.close()

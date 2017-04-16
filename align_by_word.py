@@ -1,7 +1,10 @@
 import itertools
 from pyaspeller import Word
 
-run = 'both'
+run = '4035'
+
+with open('./0_results/raw', 'r') as f:
+    raw = [line.rstrip() for line in f.readlines()]
 
 with open('./0_results/gold', 'r') as f:
     gold_norm = [line.rstrip() for line in f.readlines()]
@@ -11,7 +14,8 @@ with open('./0_results/{}'.format(run), 'r') as f:
 
 w = open('./0_results/aligned_{}.tsv'.format(run), 'w')
 
-for gold, csmt in zip(gold_norm, csmt_norm):
+for raw, gold, csmt in zip(raw, gold_norm, csmt_norm):
+    raw_words = raw.split()
     gold_words = gold.split()
     csmt_words = csmt.split()
     csmt_spellcheck = []
@@ -26,7 +30,11 @@ for gold, csmt in zip(gold_norm, csmt_norm):
 
     # if len(gold_words) == len(csmt_words):
     for line in itertools.zip_longest(
-            gold_words, csmt_words, csmt_spellcheck):
-        w.write('{}\t{}\t{}\n'.format(*line))
+            raw_words,
+            gold_words,
+            csmt_words,
+            csmt_spellcheck
+    ):
+        w.write('{}\t{}\t{}\t{}\n'.format(*line))
 
 w.close()
