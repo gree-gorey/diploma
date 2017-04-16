@@ -1,7 +1,7 @@
 import itertools
 from pyaspeller import Word
 
-run = '300'
+run = 'both'
 
 with open('./0_results/gold', 'r') as f:
     gold_norm = [line.rstrip() for line in f.readlines()]

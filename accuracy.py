@@ -1,7 +1,7 @@
 from Levenshtein import distance
 from pymystem3 import Mystem
 
-run = '300'
+run = 'both'
 
 m = Mystem()
 
@@ -22,6 +22,7 @@ w_spell.write('tool\tdist\n')
 
 i = 0
 wrong = 0
+total = 0
 
 for line in lines:
     gold, csmt, csmt_spell = line.split('\t')
@@ -30,6 +31,7 @@ for line in lines:
     csmt_spell = csmt_spell.replace('none', '').replace('ё', 'е')
     if gold != '***':
         if gold != 'none':
+            total += 1
             dist = distance(gold, csmt)
             w.write('{}\t{}\n'.format("CSMT", dist))
             if dist not in lev_csmt:
@@ -55,12 +57,12 @@ for line in lines:
                     # print(gold, gold_lemma, csmt_spell, csmt_lemma)
 
 for key in lev_csmt:
-    lev_csmt[key] = [lev_csmt[key], round(lev_csmt[key]/words_total*100, 1)]
+    lev_csmt[key] = [lev_csmt[key], round(lev_csmt[key]/total*100, 1)]
 
 for key in lev_csmt_spell:
-    lev_csmt_spell[key] = [lev_csmt_spell[key], round(lev_csmt_spell[key]/words_total*100, 1)]
+    lev_csmt_spell[key] = [lev_csmt_spell[key], round(lev_csmt_spell[key]/total*100, 1)]
 
-lemma_acc = round(right_lemma/words_total*100, 1)
+lemma_acc = round(right_lemma/total*100, 1)
 
 
 print(lev_csmt)
@@ -69,6 +71,9 @@ print('lemma acc: {}'.format(lemma_acc))
 print('wrong: {}'.format(wrong))
 
 print('{}\t{}\t{}'.format(lev_csmt[0][1], lev_csmt_spell[0][1], lemma_acc))
+
+right = total - wrong
+print('{}\t{}'.format(right, wrong))
 
 w.close()
 w_spell.close()

@@ -32,12 +32,33 @@ LM *type* is fixed: both spoken + written language corpora.
 
 ![acc_dynamics](https://raw.githubusercontent.com/gree-gorey/diploma/master/static/acc_dynamics.png "acc_dynamics")
 
-### Quality error ...
-
-
-
 ## II. Accuracy ~ type of language model
 
-...
+Gold standard size is fixed: 13767 words.
+
+### Table 2. Accuracy ~ type of language model
+
+| LM type | LM word count | training time | acc  | acc speellcheck | lemma acc | 
+|---------|---------------|---------------|------|-----------------|-----------| 
+| written | 1535861       | 00:22:40      | 82.1 | 82.9            | 87.2      | 
+| spoken  | 1535861       | 00:13:27      | 80.9 | 81.7            | 85.9      | 
+| both    | 6381702       | 00:18:54      | 82.2 | 84              | 88.2      | 
+
+### Table 3. Chi square: type of LM
+
+Calculated for spellchecked words.
+
+| type    | true | false | 
+|---------|------|-------| 
+| written | 697  | 147   | 
+| spoken  | 700  | 144   | 
+
+```
+	Pearson's Chi-squared test with Yates' continuity correction
+
+X-squared = 0.016609, df = 1, p-value = 0.8975
+```
 
 ## III. Accuracy ~ size of language model
+
+## IV. Quality error ...
