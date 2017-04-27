@@ -1,6 +1,6 @@
 words = 0
 
-with open('./diff_lm_size/200K', 'r') as f:
+with open('./by_wd/by.norm', 'r') as f:
     for line in f:
         line = line.rstrip().split()
         words += len(line)

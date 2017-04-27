@@ -1,15 +1,15 @@
 import itertools
 from pyaspeller import Word
 
-run = '4035'
+run = 'csmt_by'
 
-with open('./0_results/raw', 'r') as f:
+with open('./by_wd/test.orig', 'r') as f:
     raw = [line.rstrip() for line in f.readlines()]
 
-with open('./0_results/gold', 'r') as f:
+with open('./by_wd/test.norm', 'r') as f:
     gold_norm = [line.rstrip() for line in f.readlines()]
 
-with open('./0_results/{}'.format(run), 'r') as f:
+with open('./by_wd/{}'.format(run), 'r') as f:
     csmt_norm = [line.rstrip() for line in f.readlines()]
 
 w = open('./0_results/aligned_{}.tsv'.format(run), 'w')

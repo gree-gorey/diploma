@@ -1,7 +1,7 @@
 from Levenshtein import distance
 from pymystem3 import Mystem
 
-run = '4035'
+run = 'csmt_by'
 
 m = Mystem()
 
@@ -14,7 +14,7 @@ lev_csmt_spell = {}
 
 right_lemma = 0
 
-w_wrong = open('errors.tsv', 'w')
+w_wrong = open('errors1.tsv', 'w')
 w_wrong.write('original\tgold\tcsmt\tspellcheck\n')
 
 w = open('accuracy.tsv', 'w')
@@ -46,7 +46,7 @@ for line in lines:
             if dist:
                 w_wrong.write('{}\t{}\t{}\t{}\n'.format(raw, gold, csmt, csmt_spell))
                 wrong += 1
-                # print(gold, csmt_spell)
+                print(raw, gold, csmt, csmt_spell)
             w_spell.write('{}\t{}\n'.format("CSMT", dist))
             if dist not in lev_csmt_spell:
                 lev_csmt_spell[dist] = 1

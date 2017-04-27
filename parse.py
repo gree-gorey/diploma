@@ -11,7 +11,7 @@ def get_tree(path):
             yield tree
 
 
-for tree in get_tree('./todo/'):
+for tree in get_tree('./by/'):
     raw_ids, standard_ids = get_raw_and_standard_ids(tree)
 
     time_slots = tree.xpath('//TIME_ORDER')[0]
@@ -63,8 +63,8 @@ for tree in get_tree('./todo/'):
                 else:
                     aligned[explicit_time]['norm'] = hash_begin_norm[time_id]
 
-    raw_file = open('raw_one.txt', 'a', encoding='utf-8')
-    norm_file = open('norm_one.txt', 'a', encoding='utf-8')
+    raw_file = open('by.orig', 'a', encoding='utf-8')
+    norm_file = open('by.norm', 'a', encoding='utf-8')
 
     for pair in aligned.values():
         if len(pair) > 1:
